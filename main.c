@@ -42,6 +42,7 @@ int main(void)
     }
     exibe(FILA);
     printf("\n");
+    free(FILA);
     return 0;
 }
 

@@ -3,14 +3,14 @@
 
 typedef struct Node
 {
-    int id;
-    struct Node *prox;
+    int id; /* Valor do no */
+    struct Node *prox; /* Ponteiro para o proximo no */
 } node;
 
 typedef struct Fila
 {
-    struct Node *inicial;
-    struct Node *final;
+    struct Node *inicial; /* Ponteiro para o primeiro no da lista */
+    struct Node *final; /* Ponteiro para o ultimo no da lista */
 } fila;
 
 node *aloca(int id);
@@ -21,13 +21,14 @@ void retira(fila *FILA, int id);
 
 int main(void)
 {
-    fila *FILA = (fila *)malloc(sizeof(fila));
+    /* aloca o espaco de memoria com o tamanho da fila e casta o retorno para pornteiro de fila */
+    fila *FILA = (fila *)malloc(sizeof(fila)); 
     unsigned int n;
     unsigned int id;
     scanf("%d", &n);
     scanf("%d", &id);
-    inicia(FILA, id);
-    n--;
+    inicia(FILA, id); /* Executa uma interacao fora para iniciar a fila */
+    n--; /* Tira a interacao que rodou fora */
     while (n--)
     {
         scanf("%d", &id);
@@ -46,6 +47,7 @@ int main(void)
     return 0;
 }
 
+/* Aloca o no na memoria e retorna um ponteiro pra ele */
 node *aloca(int id)
 {
     node *novo = (node *)malloc(sizeof(node));
@@ -53,6 +55,7 @@ node *aloca(int id)
     return novo;
 }
 
+/* Inicia a fila inserindo o primeiro id */
 void inicia(fila *FILA, int idInicial)
 {
     node *novo = aloca(idInicial);
@@ -61,6 +64,7 @@ void inicia(fila *FILA, int idInicial)
     FILA->final = novo;
 }
 
+/* Insere o elemento id no final da fila */
 void insere(fila *FILA, int id)
 {
     node *novo = aloca(id);
@@ -71,6 +75,7 @@ void insere(fila *FILA, int id)
     FILA->final = novo;
 }
 
+/* percorre a fila exibindo-a */
 void exibe(fila *FILA)
 {
 
@@ -83,6 +88,7 @@ void exibe(fila *FILA)
     }
 }
 
+/* Retira o elemento da fila */
 void retira(fila *FILA, int id)
 {
     node *tmp = FILA->inicial;
